@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require "script_moka_loader"
+require 'version'
+
+Moka::ScriptMokaLoader.exec_script_moka!
+
+# If called from within a moka app the following code isn't executed
+
+if %w(-v --version).include? ARGV.first
+  puts "Moka #{Moka::VERSION::STRING}"
+  exit(0)
+end
+
+if ARGV.first != "new" and ARGV.first != "n"
+  ARGV[0] = "--help"
+else
+  ARGV.shift
+end
+
+require "commands/new"

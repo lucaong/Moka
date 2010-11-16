@@ -1,0 +1,14 @@
+<div class="box">
+	<h3>Paragraphs</h3>
+	<%= Lipsum.paragraphs 2 %>
+	<h3>Quote</h3>
+	<blockquote>
+	  <%= Lipsum.paragraphs 1 %>
+	</blockquote>
+	<h3>A List</h3>
+	<ul>
+	  <% Lipsum.sentences(8) do |item| %>
+	    <li><%= item %></li>
+	  <% end %>
+	</ul>
+</div>

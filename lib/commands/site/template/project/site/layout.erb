@@ -1,0 +1,20 @@
+<DOCTYPE html>
+<html>
+  <head>
+  <title><%= @current_page.respond_to?(:title) ? @current_page.title : @current_page.name.titleize %></title>
+    <%= stylesheet_link_tag :all, :media => "screen" %>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <%= partial :header %>
+      </div>
+      <div id="content">
+          <%= partial :content %>
+      </div>
+      <div id="footer">
+        Proudly powered by Moka
+      </div>
+    </div>
+  </body>
+</html>

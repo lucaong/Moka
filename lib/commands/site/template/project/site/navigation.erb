@@ -1,0 +1,7 @@
+<ul>
+  <% @current_group.pages.each do |page| %>
+    <li>
+      <%= link_to(page.respond_to?(:title) ? page.title : page.name.titleize, page, :class => current_page?(page) ? "selected" : "") %>
+    </li>
+  <% end %>
+</ul>

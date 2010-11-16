@@ -1,0 +1,4 @@
+---
+site:
+  name: <%= site_name %>
+  default_extension: html
