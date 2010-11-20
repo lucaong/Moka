@@ -1,3 +1,4 @@
+CHANGELOG
 LICENSE.txt
 Manifest
 README.rdoc
@@ -45,4 +46,3 @@ lib/commands/site/template/script/config/boot.rb
 lib/commands/site/template/script/moka
 lib/script_moka_loader.rb
 lib/version.rb
-moka.gemspec

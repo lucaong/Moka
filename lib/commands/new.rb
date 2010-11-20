@@ -15,11 +15,11 @@ Usage:
 
   or
 
-  moka new page group_name:page_name...
+  moka new page group_name:page_name
 
   or
 
-  moka new group group_name...
+  moka new group group_name
 
 Examples:
 
@@ -41,10 +41,10 @@ Options:
      specify another page or group or moka site to use as a template to create the new page/group/site. The new page/group/site will have a copy of all the partials, variables and pages of the template page/group/site, apart from those variables that are explicitly set as command line arguments.
   -v, --vars:
      set variables in the appropriate variables.yml file. Syntax is:
-       -vars=var_name:var_value other_var_name:other_var_value ...
+       --vars=var_name:var_value other_var_name:other_var_value ...
        or
        -v var_name:var_value other_var_name:other_var_value ...
-     variables are saved as strings. Other variable types can be set by editing directly the variables.yml file with a text editor.
+     Variables set using the command line are always saved as strings. Other variable types can be set by editing directly the appropriate variables.yml file with a text editor.
   EOT
   exit
 end
@@ -59,6 +59,6 @@ case thing_to_be_created
   when 'site', 'project', 's'
     require File.expand_path('site/new', File.dirname(__FILE__))
   else
-    puts "ERROR: invalid option #{thing_to_be_created}. Valid options are 'site', 'page' and 'group'."
+    puts "ERROR: invalid option '#{thing_to_be_created}'. Valid options are 'site', 'page' and 'group'."
     exit
 end

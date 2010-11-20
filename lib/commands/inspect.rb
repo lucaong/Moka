@@ -25,13 +25,13 @@ Usage:
 
 Examples:
  moka inspect page groupname:mypagename
-   show variables and parameters available in page 'mypagename' belonging to group 'groupname'
+   show variables and parameters available in the context of page 'mypagename' belonging to group 'groupname'
 
  moka inspect page index
-   show variables and parameters available in page 'index' belonging to group 'root'
+   show variables and parameters available in the context of page 'index' belonging to group 'root'
 
  moka inspect group mygroup
-   show variables, parameters and pages available in group 'mygroup'
+   show variables, parameters and pages available in the context of group 'mygroup'
 
  moka inspect site
    show site-level variables, parameters and groups

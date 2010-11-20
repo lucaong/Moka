@@ -46,8 +46,8 @@ module Moka
     private
 
     def start_webrick(config = {})
-      # always listen on port 8080 if not explicitly specified
-      config.update(:Port => 8080) if config[:Port].nil?
+      # always listen on port 3333 if not explicitly specified
+      config.update(:Port => 3333) if config[:Port].nil?
       server = HTTPServer.new(config)
       yield server if block_given?
       ['INT', 'TERM'].each {|signal| 
@@ -122,4 +122,4 @@ Usage:
   end
 end
 
-Moka::SimpleServer.new.run({ :Port => (ARGV.size > 0) ? ARGV[0].to_i : 8080 })
+Moka::SimpleServer.new.run({ :Port => (ARGV.size > 0) ? ARGV[0].to_i : 3333 })
