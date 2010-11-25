@@ -28,11 +28,9 @@ You need to replace 'your_site_name' with the actual name of your project.
 
 By the time this command executes, you'll see that a new directory named 'your_site_name' (or whatever you choose as the name of your project) was created. Into this directory you will see a file named manifest.yml, which describes the structure of your new site and gets updated automatically as you create new pages and groups. Apart from this file, you will find three directories:
 
-  * compiled - here is where your project will be compiled to a pure HTML website, and where static assets like images, javascripts and stylesheets should be placed.
-  
-  * project - your development directory, where you will create all the pieces that Moka will put together to compile your project into a working website: partials, variables, groups and pages (keep reading and this will get much clearer)
-  
-  * script - this directory contains files needed by Moka in order to work properly. Usually you won't need to edit them.
+* compiled - here is where your project will be compiled to a pure HTML website, and where static assets like images, javascripts and stylesheets should be placed. 
+* project - your development directory, where you will create all the pieces that Moka will put together to compile your project into a working website: partials, variables, groups and pages (keep reading and this will get much clearer)  
+* script - this directory contains files needed by Moka in order to work properly. Usually you won't need to edit them.
 
 === Add pages to your website
 
