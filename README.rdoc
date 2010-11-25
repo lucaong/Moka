@@ -5,8 +5,8 @@ Moka is a damn simple framework designed to build static websites like portfolio
 A taste of Moka coolness:
 - Don't Repeat Yourself
 - Convention Over Configuration
-- Learn it in 10 minutes, set it up with a single command, start your creative work!
-- Compile everything into plain HTML and CSS code, working on virtually every possible webserver
+- Learn it in 10 minutes, set it up with a single command, start your creative work immediately
+- Compile everything into plain HTML and CSS code, working on virtually any possible webserver
 
 == Installation
 
@@ -94,7 +94,7 @@ Making good use of sitetree nodes and their variables you can easily employ page
 
 Moka provides you with a bunch of super useful helper methods that you can use in your layouts and partials. Some of these helpers are link_to, path_to, image_tag, include_javascript_tag, stylesheet_link_tag and many more (Rails developers, do some of these methods sound familiar?). Read the docs and find out how these methods can help you making your code extremely efficient.
 
-You have also among your weapon the Lipsum class, with which you can generate dummy text at the speed of light:
+You have also among your weapons the Lipsum class, with which you can generate dummy text at the speed of light:
 
   Lipsum.paragraphs 4  # Generate four paragraphs of dummy text
   Lipsum.sentences 3   # Generate three sentences of dummy text
