@@ -2,4 +2,4 @@
 
 MOKA_ROOT = File.expand_path("../../", File.dirname(__FILE__))
 require "rubygems"
-gem "moka", "0.1.2"
+gem "moka", "0.1.3"

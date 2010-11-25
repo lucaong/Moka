@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{moka}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Luca Ongaro"]
-  s.date = %q{2010-11-20}
+  s.date = %q{2010-11-25}
   s.default_executable = %q{moka}
   s.description = %q{Moka is a damn simple framework designed to build static websites like portfolios, showcases, minisites, HTML mockups, etc. Moka setup takes a single command, and it provides a hierarchical template system and some hyper-convenient helper functions so you never have to write more code than necessary. The result of your work is compiled to plain HTML, CSS and Javascript, so you just have to upload it to your server. Plus, don't forget the Lipsum helper functions to generate dummy text with a single line of code during development or in HTML mockups.}
   s.email = %q{mail@lucaongaro.eu}
