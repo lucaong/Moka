@@ -96,6 +96,12 @@ Making good use of sitetree nodes and their variables you can easily employ page
 
 Moka provides you with a bunch of super useful helper methods that you can use in your layouts and partials. Some of these helpers are link_to, path_to, image_tag, include_javascript_tag, stylesheet_link_tag and many more (Rails developers, do some of these methods sound familiar?). Read the docs and find out how these methods can help you making your code extremely efficient.
 
+You have also among your weapon the Lipsum class, with which you can generate dummy text at the speed of light:
+
+  Lipsum.paragraphs 4  # Generate four paragraphs of dummy text
+  Lipsum.sentences 3   # Generate three sentences of dummy text
+  Lipsum.words 10      # generate 10 words of dummy text
+
 Need even more kung fu? Then you can code your own helper methods. Just code your methods into project/lib/helpers.rb and you will be able to use them in your layout and partials.
 
 === Writing CSS
@@ -112,7 +118,7 @@ Moka will compile all your project code into pure HTML and CSS into the compiled
 
 === More Moka awesomeness
 
-Try to type in the command line something like:
+Try typing in the command line something like:
 
   moka new site --template=another/project/path  # Create a new moka project using another one as a template
   moka new group [--template=another_group]  # Create a new group [using an existing one as a template]
