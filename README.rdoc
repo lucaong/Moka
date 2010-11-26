@@ -64,15 +64,15 @@ All the files you need to create or edit to change the HTML code of your new pag
 
 Think of pages in a Moka project as jigsaw puzzles: every page is composed of various pieces, and Moka uses its conventions in order to select the right pieces when assembling the puzzle. When Moka compiles a page, first of all it looks for a file named layout.erb (or .haml) which defines the basic HTML layout and structure of the page. Moka looks for this file first in the page directory (project/site/root/index in the case of our first page). If it can't find it there, it looks into the group directory (project/site/root), and then, if there is no layout file in the group directory, it looks for it in the site directory (project/site).
 
-Apart from defining the basic HTML structure of a page, the layout file may request one or more partials (through the Ruby method partial(:partial_name) ). As the name indicates, partials are simply parts of the HTML code of a page, or pieces of the puzzle in our analogy. As it does with the layout file, Moka looks for each partial first in the page directory, than in the group directory, and finally, if all else failed, in the site directory.
+Apart from defining the basic HTML structure of a page, the layout file may request one or more partials (through the Ruby method partial(:partial_name) ). Partials are erb (or haml) files too, and define parts of the HTML code of a page. In our analpogy, they are the pieces of the puzzle. As it does with the layout file, Moka looks for each partial first in the page directory, than in the group directory, and finally, if all else failed, in the site directory.
 
 In your layout or partials, you can also use some variables, that you define in a file named variables.yml. Again, Moka decides the value of each variable looking for its definition (in a variables.yml file) first in the page directory, then in the group directory and finally in the site directory until it finds it.
 
 Now the advantage you get from this hierarchical structure provided by Moka should be clear: you place all the page-specific elements in the page directory, the elements that are used in multiple pages in the same group in the group directory, and all the elements that are used by many pages all over the site in the site directory. Moka always assembles your pages using the most specific elements (layout, partials and variables). This means that you never have to write duplicated code.
 
-=== Pagetree variables
+=== Sitetree and variables
 
-In your layout and partials you have access to some instance variables. These are @site, @current_group and @current_page. As the names suggest, these variables point to the current page, group and site in the sitetree. The same layout or partial may be used by many different pages, but when you compile your project, the @current_page (@current_group) variable will always be referencing the right page (group) being compiled.
+As mentioned before, in your layout and partials you have access to some instance variables. These are @site, @current_group and @current_page. As the names suggest, these variables point to the current page, group and site in the sitetree. The same layout or partial may be used by many different pages, but when you compile your project, the @current_page (@current_group) variable will always be referencing the right page (group) being compiled.
 You can navigate through them:
 
   @site.groups
@@ -91,7 +91,13 @@ You can navigate through them:
   # Same as above, but the strings passed as arguments to the find_* methods may be variables
   # declared somewhere else in your code
 
-The object in the sitetree (site, groups and pages) let you access the variables defined in the variables.yml files. Thus, you can do something like:
+You can cycle through them:
+
+  <% @current_group.pages.each do |page| %>
+    # do something with each page
+  <% end %>
+
+Nodes in the sitetree (site, groups and pages) let you access the variables defined in the variables.yml files. Thus, you can do something like:
 
   @current_page.name
   # The name of the current page. 'index' in the case of our first example.
@@ -100,13 +106,21 @@ The object in the sitetree (site, groups and pages) let you access the variables
   # Returns the most specific value of variable my_variable defined in a variables.yml file in the current page directory,
   # or in its group directory, or in the site directory.
 
-Sitetree nodes and their variables lets you easily make use of page-specific or group-specific variables in your code.
+Sitetree nodes provide you with a way to use page-specific or group-specific variables in your code. Making good use of sitetree variables lets you write less code and makes your design more robust. An example is when you code navigation menus:
+
+  <ul>
+    <% @current_group.pages.each do |page| %>
+      <li><%= link_to(page.name.titleize, page) %></li>
+    <% end %>
+  </ul>
+
+Creating the menu in this way is not only incredibly fast, but also robust to changes: should you add new pages to the group or delete some existing pages, you don't need to rewrite the navigation menu, as it adapts to your changes.
 
 === Helpers
 
-Moka provides you with a bunch of super useful helper methods that you can use in your layouts and partials. Some of these helpers are link_to, path_to, image_tag, include_javascript_tag, stylesheet_link_tag and many more (Rails developers, do some of these methods sound familiar?). Read the docs and find out how these methods can help you making your code extremely efficient.
+Moka provides you with a bunch of super useful helper methods that you can use in your layouts and partials. Some of these helpers are link_to, path_to, image_tag, include_javascript_tag, stylesheet_link_tag and many others (Rails developers, do some of these methods sound familiar?). Read the docs and find out how these methods can help you making your code extremely efficient.
 
-You have also among your weapons the Lipsum class, with which you can generate dummy text at the speed of light:
+You have also among your weapons the convenient Lipsum class, with which you can generate dummy text at the speed of light:
 
   Lipsum.paragraphs 4
   # Generate four paragraphs of dummy text, enclosed by <p> tags
