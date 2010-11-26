@@ -75,20 +75,32 @@ Now the advantage you get from this hierarchical structure provided by Moka shou
 In your layout and partials you have access to some instance variables. These are @site, @current_group and @current_page. As the names suggest, these variables point to the current page, group and site in the sitetree. The same layout or partial may be used by many different pages, but when you compile your project, the @current_page (@current_group) variable will always be referencing the right page (group) being compiled.
 You can navigate through them:
 
-  @site.groups # Returns an Array of all groups
-  @current_group.pages # Returns an Array of all pages in the current group
-  @current_page.group # Returns an object referencing the group to which @current_page belongs. Same as @current_group
-  @site.mygroup.mypage # Returns an object referencing the page 'mypage' in group 'mygroup'
-  @site.find_group('mygroup').find_page('mypage') # Same as above, but the strings passed as arguments to the find_*
-                                                  # methods may be variables declared somewhere else in your code
+  @site.groups
+  # Returns an Array of all groups
+  
+  @current_group.pages
+  # Returns an Array of all pages in the current group
+  
+  @current_page.group
+  # Returns an object referencing the group to which @current_page belongs. Same as @current_group
+  
+  @site.mygroup.mypage
+  # Returns an object referencing the page 'mypage' in group 'mygroup'
+  
+  @site.find_group('mygroup').find_page('mypage')
+  # Same as above, but the strings passed as arguments to the find_* methods may be variables
+  # declared somewhere else in your code
 
 The object in the sitetree (site, groups and pages) let you access the variables defined in the variables.yml files. Thus, you can do something like:
 
-  @current_page.name # The name of the current page. 'index' in the case of our first example.
-  @current_page.my_variable # Returns the value of variable my_variable defined in the variables.yml file in the
-                            # current page directory, or in its group directory, or in the site directory.
+  @current_page.name
+  # The name of the current page. 'index' in the case of our first example.
+  
+  @current_page.my_variable
+  # Returns the most specific value of variable my_variable defined in a variables.yml file in the current page directory,
+  # or in its group directory, or in the site directory.
 
-Making good use of sitetree nodes and their variables you can easily employ page-specific values in your code.
+Sitetree nodes and their variables lets you easily make use of page-specific or group-specific variables in your code.
 
 === Helpers
 
@@ -96,19 +108,32 @@ Moka provides you with a bunch of super useful helper methods that you can use i
 
 You have also among your weapons the Lipsum class, with which you can generate dummy text at the speed of light:
 
-  Lipsum.paragraphs 4  # Generate four paragraphs of dummy text
-  Lipsum.sentences 3   # Generate three sentences of dummy text
-  Lipsum.words 10      # generate 10 words of dummy text
+  Lipsum.paragraphs 4
+  # Generate four paragraphs of dummy text, enclosed by <p> tags
+  
+  Lipsum.sentences 3
+  # Generate three sentences of dummy text
+  
+  Lipsum.words 10
+  # Generate 10 words of dummy text
+
+All these Lipsum methods can also be passed a block:
+
+  <ul>
+    <% Lipsum.sentences(7) do |sentence| %>
+      <li><%= sentence %></li>
+    <% end %>
+  </ul>
 
 Need even more kung fu? Then you can code your own helper methods. Just code your methods into project/lib/helpers.rb and you will be able to use them in your layout and partials.
 
 === Writing CSS
 
-You are probably wondering now "OK, but what about CSS?". Well, you can code your CSS inline or place CSS files into the compiled/stylesheets directory and import them in your HTML. Alternatively, if you are a fan of the awesome SASS syntax, you can write SASS or SCSS files into the project/styles directory, and they will be magically compiled into CSS stylesheets into compile/stylesheets.
+You are probably wondering now "OK, but what about CSS?". Well, you can code your CSS inline, or place CSS files into the compiled/stylesheets directory and import them in your HTML. Alternatively, if you are a fan of the awesome SASS syntax, you can write SASS or SCSS files into the project/styles directory, and they will be magically compiled into CSS stylesheets into compile/stylesheets.
 
 === Compiling the project into a website
 
-When you finished coding your pages (which, thanks to Moka awesomeness, look like haiku poetry) you are ready to release your website. It is as simple as typing:
+When you are done coding your pages (which, thanks to Moka awesomeness, will look clean and simple like haiku poetry) you are ready to release your website. It is as simple as typing:
 
   moka compile
 
@@ -118,12 +143,22 @@ Moka will compile all your project code into pure HTML and CSS into the compiled
 
 Try typing in the command line something like:
 
-  moka new site --template=another/project/path  # Create a new moka project using another one as a template
-  moka new group [--template=another_group]  # Create a new group [using an existing one as a template]
-  moka new page my_group:my_page -v title:"My Page Title" exclamation:yeah!  # Create a page named my_page in group my_group
-                                                                             # and define its variables title (with value "My 
-                                                                             # Page Title") and exclamation (with value "yeah!")
-  moka inspect site  # Show groups and variables defined at the site level
-  moka inspect group my_group  # Show pages and variables defined at the level of group my_group
-  moka inspect page my_group:my_page  # Show variables defined at the level of page my_page in group my_group
+  moka new site --template=another/project/path
+  # Create a new moka project using another one as a template
+  
+  moka new group [--template=another_group]
+  # Create a new group [using an existing one as a template]
+  
+  moka new page my_group:my_page -v title:"My Page Title" other_variable:"Moka Rocks!"
+  # Create a page named my_page in group my_group and define its variables title (with value "My Page Title")
+  # and other_variable (with value "Moka Rocks!") in the project/site/my_group/my_page/variables.yml file
+  
+  moka inspect site
+  # Show groups and variables defined at the site level
+  
+  moka inspect group my_group
+  # Show pages and variables defined at the level of group my_group
+  
+  moka inspect page my_group:my_page
+  # Show variables defined at the level of page my_page in group my_group
 
