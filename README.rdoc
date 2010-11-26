@@ -64,15 +64,12 @@ But what files do you need to create/edit? When you create a page using the new 
 Moka is all about placing pieces of code in the right directory, as where you place your file determines how these files are used to compose your pages.
 
 ==== Layouts
-
 Think of pages in a Moka project as jigsaw puzzles: every page is composed of various pieces, and Moka uses its conventions in order to select the right pieces when assembling the puzzle. When Moka compiles a page, first of all it looks for a file named layout.erb (or .haml) which defines the basic HTML layout and structure of the page. Moka looks for this file first in the page directory (project/site/root/index in the case of our first page). If it can't find it there, it looks into the group directory (project/site/root), and then, if there is no layout file in the group directory, it looks for it in the site directory (project/site).
 
 ==== Partials
-
 Apart from defining the basic HTML structure of a page, the layout file may request one or more partials (through the Ruby method partial(:partial_name) ). Partials are erb (or haml) files too, and define parts of the HTML code of a page. In our analpogy, they are the pieces of the puzzle. As it does with the layout file, Moka looks for each partial first in the page directory, than in the group directory, and finally, if all else failed, in the site directory.
 
 ==== Variables
-
 In your layout or partials, you can also use some variables, that you define in a file named variables.yml. Again, Moka decides the value of each variable looking for its definition (in a variables.yml file) first in the page directory, then in the group directory and finally in the site directory until it finds it.
 
 Now the advantage you get from this hierarchical structure provided by Moka should be clear: you place all the page-specific elements in the appropriate page directory, the elements that are used by multiple pages in the same group in the group directory, and all the elements that are used all over the site in the site directory. Moka always assembles your pages choosing the most specific version of an element (being it a layout, partial or variable). This means that you never have to write duplicated code.
