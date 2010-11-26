@@ -77,7 +77,8 @@ Now the advantage you get from this hierarchical structure provided by Moka shou
 === Sitetree and variables
 
 As mentioned before, in your layout and partials you have access to some instance variables. These are @site, @current_group and @current_page. As the names suggest, these variables point to the current page, group and site in the sitetree. The same layout or partial may be used by many different pages, but when you compile your project, the @current_page (@current_group) variable will always be referencing the right page (group) being compiled.
-You can navigate through them:
+
+You can navigate through the sitetree:
 
   @site.groups
   # Returns an Array of all groups
@@ -95,7 +96,7 @@ You can navigate through them:
   # Same as above, but the strings passed as arguments to the find_* methods may be variables
   # declared somewhere else in your code
 
-You can cycle through them:
+You can cycle through nodes:
 
   <% @current_group.pages.each do |page| %>
     # do something with each page
