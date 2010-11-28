@@ -1,8 +1,8 @@
 == Welcome to Moka
 
-Moka is a damn simple framework designed to build static websites like portfolios, showcases, minisites, HTML mockups, etc. Moka setup takes a single command, and it provides a hierarchical template system and some hyper-convenient helper functions so you never have to write more code than necessary. The result of your work is compiled to plain HTML, CSS and Javascript, so you just have to upload it to your server. Plus, don't forget the Lipsum helper functions to generate dummy text with a single line of code during development or in HTML mockups.
+Moka is a damn simple framework designed to build static websites like portfolios, showcases, minisites, HTML mockups, etc. Moka setup takes a single command, and it provides you with a hierarchical template system and some hyper-convenient helper functions so you never have to write more code than necessary. The result of your work is compiled to plain HTML, CSS and Javascript: you just need to upload it to your server to deploy it. Add as a bonus the Lipsum helpers, with which you can generate dummy text with a single line of code during development or in HTML mockups.
 
-A taste of Moka coolness:
+Moka values:
 - Don't Repeat Yourself
 - Convention Over Configuration
 - Learn it in 10 minutes, set it up with a single command, start your creative work immediately
@@ -17,11 +17,12 @@ Install the gem:
 
 === Prerequisites
 
-Moka is really simple and straightforward, but it is intended for developers and people who already know how to code in HTML and CSS. Since Moka uses Ruby language, some knowledge of it is probably needed before getting started. For Ruby on Rails developers, using Moka should be extremely simple, since Moka uses erb (or haml) and many helper methods that work nearly the same way as in Rails.
+Moka is really simple and straightforward, but it is intended for developers and people who already know how to code in HTML and CSS. Since Moka uses Ruby language, some knowledge of it is probably needed before getting started.
+For Ruby on Rails developers, using Moka should be extremely simple, since Moka uses erb (or haml) and many helper methods that work nearly the same way as in Rails.
 
 === Create a new Moka project
 
-You can create a new Moka project with just one command. Simply navigate to your development directory, open the command line and type:
+You can create a new Moka project with just one command. Simply open the command line, navigate to your development directory and type:
 
   moka new site your_site_name
 
@@ -72,7 +73,7 @@ Apart from defining the basic HTML structure of a page, the layout file may requ
 ==== Variables
 In your layout or partials, you can also use some variables, that you define in a file named variables.yml. Again, Moka decides the value of each variable looking for its definition (in a variables.yml file) first in the page directory, then in the group directory and finally in the site directory until it finds it.
 
-Now the advantage you get from this hierarchical structure provided by Moka should be clear: you place all the page-specific elements in the appropriate page directory, the elements that are used by multiple pages in the same group in the group directory, and all the elements that are used all over the site in the site directory. Moka always assembles your pages choosing the most specific version of an element (being it a layout, partial or variable). This means that you never have to write duplicated code.
+Now the advantage you get from this hierarchical structure provided by Moka should be clear: you place all the page-specific elements in the appropriate page directory, the elements that are used by multiple pages in the same group in the group directory, and all the elements that are used all over the site in the site directory. Basically, the directory where you put an element determines its scope: Moka always assembles your pages choosing the most specific version of an element (being it a layout, partial or variable). This means that you never have to write duplicated code.
 
 === Sitetree and variables
 
@@ -170,7 +171,7 @@ Try typing in the command line something like:
   
   moka new page my_group:my_page -v title:"My Page Title" other_variable:"Moka Rocks!"
   # Create a page named my_page in group my_group and define its variables title (with value "My Page Title")
-  # and other_variable (with value "Moka Rocks!") in the project/site/my_group/my_page/variables.yml file
+  # and other_variable (with value "Moka Rocks!") writing into the project/site/my_group/my_page/variables.yml file
   
   moka inspect site
   # Show groups and variables defined at the site level
