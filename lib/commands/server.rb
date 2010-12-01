@@ -4,7 +4,7 @@ require 'getoptlong'
 module Moka
   class SimpleServer
     require 'webrick'
-    require "yaml"
+    require 'yaml'
     require File.expand_path('lib/compiler', File.dirname(__FILE__))
     include WEBrick
 
@@ -116,7 +116,7 @@ Usage:
 
  moka server [port]
 
- Start an extremely simple development server on http://localhost:8080/ or on the port specified as the first argument. This server eliminates the need to re-compile pages after each change, but it is only intended for development purpose. Currently, it only serves static HTML pages, and recognizes a limited number of content types.
+ Start an extremely simple development server on http://localhost:3333/ or on the port specified as the first argument. This server eliminates the need to re-compile pages after each change, but it is only intended for development purpose. Currently, it only serves static HTML pages, and recognizes a limited number of content types.
       EOT
       exit
   end
