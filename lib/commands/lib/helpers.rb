@@ -7,17 +7,17 @@ module Moka
     #
     # ==== Examples:
     #
-    # <ul>
-    #   <% @current_group.pages.each do |page| %>
-    #     <li>
-    #       <% if current_page? page %>
-    #         <%= page.name.titleize %>
-    #       <% else %>
-    #         <%= link_to page.name.titleize, page %>
-    #       <% end %>
-    #     </li>
-    #   <% end %>
-    # </ul>
+    #   <ul>
+    #     <% @current_group.pages.each do |page| %>
+    #       <li>
+    #         <% if current_page? page %>
+    #           <%= page.name.titleize %>
+    #         <% else %>
+    #           <%= link_to page.name.titleize, page %>
+    #         <% end %>
+    #       </li>
+    #     <% end %>
+    #   </ul>
     #
     def current_page?(page)
       unless page.respond_to? :path

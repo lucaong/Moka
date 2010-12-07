@@ -1,6 +1,6 @@
 == Welcome to Moka
 
-Moka is a damn simple framework designed to build static websites like portfolios, showcases, minisites, HTML mockups, etc. Moka setup takes a single command, and it provides you with a hierarchical template system and some super-convenient helper functions so you never have to write more code than necessary. The result of your work is compiled to plain HTML, CSS and Javascript: you just need to upload it to your server to deploy it. Add as a bonus the Lipsum helpers, with which you can generate dummy text with a single line of code during development or in HTML mockups.
+Moka is a damn simple framework designed to build *static websites* like portfolios, showcases, minisites, HTML mockups, etc. Moka setup takes a single command, and it provides you with a hierarchical template system and some super-convenient helper methods so you never have to write more code than necessary. The result of your work is compiled to plain HTML, CSS and Javascript: you just need to upload it to your server to deploy it. Add as a bonus the Lipsum helpers, with which you can generate dummy text with a single line of code during development or in HTML mockups.
 
 Moka values:
 - Don't Repeat Yourself
@@ -30,13 +30,13 @@ You need to replace 'your_site_name' with the actual name of your project.
 
 By the time this command executes, you'll see that a new directory named 'your_site_name' (or whatever you choose as the name of your project) was created. Into this directory you will see a file named manifest.yml, which describes the structure of your new site and gets updated automatically as you create new pages and groups. Apart from this file, you will find three directories:
 
-* compiled - here is where your project will be compiled to a pure HTML website, and where static assets like images, javascripts and stylesheets should be placed. 
-* project - your development directory, where you will create all the pieces that Moka will put together to compile your project into a working website: partials, variables, groups and pages (keep reading and this will get much clearer)  
-* script - this directory contains files needed by Moka in order to work properly. Usually you won't need to edit them.
+* *compiled* - here is where your project will be compiled to a pure HTML website, and where static assets like images, javascripts and stylesheets should be placed. 
+* *project* - your development directory, where you will create all the pieces that Moka will put together to compile your project into a working website: partials, variables, groups and pages (keep reading and this will get much clearer)  
+* *script* - this directory contains files needed by Moka in order to work properly. Usually you won't need to edit them.
 
 === Add pages to your website
 
-Adding pages to your project is really simple, but first you need to understand the way Moka is organized. In Moka we have the concepts of site, groups and pages. Basically, every page belongs to a group, and every group belongs to the site. It's like a tree: the site is the root, groups are branches and pages are leaves (for this reason we call this structure the sitetree).
+Adding pages to your project is really simple, but first you need to understand the way Moka is organized. In Moka we have the concepts of site, groups and pages. Basically, every page belongs to a group, and every group belongs to the site. It's like a tree: the site is the trunk, groups are branches and pages are leaves (for this reason we call this structure the sitetree).
 
 This structure helps you avoid duplication and write less code: if some pages share some common elements, such as layout or pieces of code, they should belong to the same group. This way, you will need to code the common elements just once, at the group level, and all the pages in that group will use them. In the same way, if some elements are common to all the pages in your website, you should code them at the site level, so they will be available to every page in every group.
 
@@ -68,10 +68,10 @@ Moka is all about placing pieces of code in the right directory, as where you pl
 Think of pages in a Moka project as jigsaw puzzles: every page is composed of various pieces, and Moka uses its conventions in order to select the right pieces when assembling the puzzle. When Moka compiles a page, first of all it looks for a file named layout.erb (or .haml) which defines the basic HTML layout and structure of the page. Moka looks for this file first in the page directory (project/site/root/index in the case of our first page). If it can't find it there, it looks into the group directory (project/site/root), and then, if there is no layout file in the group directory, it looks for it in the site directory (project/site).
 
 ==== Partials
-Apart from defining the basic HTML structure of a page, the layout file may request one or more partials (through the Ruby method partial(:partial_name) ). Partials are erb (or haml) files too, and define parts of the HTML code of a page. In our analpogy, they are the pieces of the puzzle. As it does with the layout file, Moka looks for each partial first in the page directory, than in the group directory, and finally, if all else failed, in the site directory.
+Apart from defining the basic HTML structure of a page, the layout file may request one or more partials (through the Ruby method partial(:partial_name) ). Partials are erb (or haml) files too, and define parts of the HTML code of a page. In our analogy, they are the pieces of the puzzle. As it does with the layout file, Moka looks for each partial first in the page directory, than in the group directory, and finally, if all else failed, in the site directory.
 
 ==== Variables
-In your layout or partials, you can also use some variables, that you define in a file named variables.yml. Again, Moka decides the value of each variable looking for its definition (in a variables.yml file) first in the page directory, then in the group directory and finally in the site directory until it finds it.
+In your layout or partials, you can also use some variables, that you define in a file named variables.yml. Again, Moka decides the value of each variable looking for its definition in a variables.yml file first in the page directory, then in the group directory and finally in the site directory until it finds it.
 
 Now the advantage you get from this hierarchical structure provided by Moka should be clear: you place all the page-specific elements in the appropriate page directory, the elements that are used by multiple pages in the same group in the group directory, and all the elements that are used all over the site in the site directory. Basically, the directory where you put an element determines its scope: Moka always assembles your pages choosing the most specific version of an element (being it a layout, partial or variable). This means that you never have to write duplicated code.
 
